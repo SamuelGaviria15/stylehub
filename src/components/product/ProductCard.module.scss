@@ -30,7 +30,7 @@
   --card-price-original: #{$neutral-color};
   --card-image-bg: #{$surface-color};
   --card-button-bg: #{$secondary-color};
-  --card-button-text: #{$dark-surface};
+  --card-button-text: #{$light-surface};
   --card-button-hover: #{$accent-color};
   --card-accent: #{$dark-bg};
 }
@@ -247,6 +247,10 @@
   letter-spacing: 0.5px;
   position: relative;
   overflow: hidden;
+  
+  svg {
+    color: var(--card-button-text) !important;
+  }
 }
 
 .addToCartBtn::before {

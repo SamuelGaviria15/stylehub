@@ -294,6 +294,22 @@
   gap: 0.7rem;
   transition: background 0.2s, opacity 0.2s;
 
+  svg {
+    color: var(--pd-button-text);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    
+    svg {
+      color: var(--pd-button-text);
+    }
+  }
+
+  &:not(:disabled):hover {
+    filter: brightness(1.1);
+  }
+
   &:disabled {
     background: #ccc;
     cursor: not-allowed;
@@ -317,6 +333,63 @@
   &:hover {
     background: #ffe0b2;
     color: #d32f2f;
+  }
+}
+
+// Forzar estilos correctos para el botón en tema oscuro
+[data-theme="dark"] .addToCart {
+  background: #d4af8c !important;
+  color: #000000 !important;
+  
+  svg {
+    color: #000000 !important;
+  }
+  
+  &:disabled {
+    background: #999999 !important;
+    color: #666666 !important;
+    opacity: 0.8 !important;
+    
+    svg {
+      color: #666666 !important;
+    }
+  }
+  
+  &:not(:disabled) {
+    background: #d4af8c !important;
+    color: #000000 !important;
+    
+    svg {
+      color: #000000 !important;
+    }
+  }
+  
+  &:not(:disabled):hover {
+    background: #c19a70 !important;
+    color: #000000 !important;
+    
+    svg {
+      color: #000000 !important;
+    }
+  }
+}
+
+[data-theme="dark"] .wishlist {
+  background: #333333;
+  color: #d4af8c;
+  border-color: #d4af8c;
+  
+  svg {
+    color: #d4af8c !important;
+  }
+  
+  &:hover {
+    background: #444444;
+    color: #ffffff;
+    
+    svg {
+      color: #ffffff !important;
+    }
   }
 }
 

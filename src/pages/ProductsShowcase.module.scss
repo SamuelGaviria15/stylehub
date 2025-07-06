@@ -54,6 +54,10 @@
   letter-spacing: 0.5px;
   margin-bottom: 2rem;
   
+  svg {
+    color: $light-surface !important;
+  }
+  
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba($secondary-color, 0.3);
