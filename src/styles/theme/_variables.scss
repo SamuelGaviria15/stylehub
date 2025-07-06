@@ -1,0 +1,96 @@
+// Definición de variables de diseño para StyleHub - Paleta Sofisticada
+// Colores principales - Paleta sobria y elegante
+$primary-color: #1c1c1c;      // Negro carbón principal
+$secondary-color: #8b7355;    // Café capuchino
+$accent-color: #a67c52;       // Café claro para acentos
+$tertiary-color: #f5f1eb;     // Beige muy claro
+$surface-color: #2a2a2a;      // Gris oscuro para superficies
+$neutral-color: #6b6b6b;      // Gris medio para textos secundarios
+
+// Nuevos colores sofisticados
+$wine-color: #722f37;         // Vino tinto elegante
+$berry-color: #5d4e75;        // Mora sofisticada
+$wine-light: #8b4249;         // Vino tinto claro
+$berry-light: #7a6a8e;        // Mora clara
+
+// Gradientes sofisticados actualizados
+$gradient-primary: linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 100%);
+$gradient-secondary: linear-gradient(135deg, #8b7355 0%, #a67c52 100%);
+$gradient-accent: linear-gradient(135deg, #a67c52 0%, #c4946b 100%);
+$gradient-wine: linear-gradient(135deg, #722f37 0%, #8b4249 100%);
+$gradient-berry: linear-gradient(135deg, #5d4e75 0%, #7a6a8e 100%);
+$gradient-elegant: linear-gradient(135deg, #722f37 0%, #5d4e75 50%, #8b7355 100%);
+
+// Tipografía elegante
+$font-family-primary: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+$font-family-secondary: 'Inter', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-family-accent: 'Cormorant Garamond', 'Georgia', serif;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+$font-size-base: 16px;
+$font-size-sm: 0.875rem;
+$font-size-lg: 1.25rem;
+
+// Breakpoints actualizados
+$mobile: 320px;
+$mobile-lg: 480px;
+$tablet: 768px;
+$tablet-lg: 992px;
+$desktop: 1024px;
+$desktop-lg: 1200px;
+$desktop-xl: 1440px;
+
+// Breakpoints estándar
+$breakpoint-xs: 320px;
+$breakpoint-sm: 480px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1440px;
+
+// Espaciados
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-xxl: 3rem;
+
+// Border radius
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+
+// Sombras
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+// Colores para temas claro y oscuro
+$light-bg: #fafafa;
+$light-text: #1c1c1c;
+$light-surface: #ffffff;
+$light-border: #e8e5e0;
+
+$dark-bg: #0f0f0f;
+$dark-text: #f5f1eb;
+$dark-surface: #1c1c1c;
+$dark-border: #2a2a2a;
+
+// Transiciones suaves
+$transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Colores adicionales refinados
+$white: #ffffff;
+$black: #000000;
+$error-color: #d32f2f;
+$success-color: #2e7d32;
+$warning-color: #f57c00;
+
+// Transiciones
+$transition-base: all 0.3s ease;
+
+$background-color: #f8f9fa; // Fondo general del sitio

@@ -1,0 +1,62 @@
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(139, 108, 76, 0.2);
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.toggle:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(139, 108, 76, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(139, 108, 76, 0.15);
+}
+
+[data-theme="dark"] .toggle {
+  background: rgba(26, 26, 26, 0.9);
+  border-color: rgba(139, 108, 76, 0.4);
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .toggle:hover {
+  background: rgba(26, 26, 26, 1);
+  border-color: rgba(139, 108, 76, 0.6);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.icon.light {
+  color: #8b6c4c;
+  background: rgba(139, 108, 76, 0.1);
+}
+
+.icon.dark {
+  color: #d4af8c;
+  background: rgba(212, 175, 140, 0.1);
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8b6c4c;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .label {
+  color: #d4af8c;
+}

@@ -1,0 +1,314 @@
+@use '../../styles/theme/variables' as *;
+
+// Variables para tema sofisticado
+:root {
+  --card-bg: #{$light-surface};
+  --card-border: #{$light-border};
+  --card-shadow: 0 2px 8px rgba(28, 28, 28, 0.08);
+  --card-shadow-hover: 0 12px 24px rgba(28, 28, 28, 0.15);
+  --card-text: #{$light-text};
+  --card-text-secondary: #{$neutral-color};
+  --card-brand: #{$secondary-color};
+  --card-price: #{$accent-color};
+  --card-price-original: #{$neutral-color};
+  --card-image-bg: #{$tertiary-color};
+  --card-button-bg: #{$secondary-color};
+  --card-button-text: #{$light-surface};
+  --card-button-hover: #{$accent-color};
+  --card-accent: #{$light-bg};
+}
+
+[data-theme="dark"] {
+  --card-bg: #{$dark-surface};
+  --card-border: #{$dark-border};
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --card-shadow-hover: 0 12px 24px rgba(0, 0, 0, 0.5);
+  --card-text: #{$dark-text};
+  --card-text-secondary: #{$neutral-color};
+  --card-brand: #{$accent-color};
+  --card-price: #{$accent-color};
+  --card-price-original: #{$neutral-color};
+  --card-image-bg: #{$surface-color};
+  --card-button-bg: #{$secondary-color};
+  --card-button-text: #{$dark-surface};
+  --card-button-hover: #{$accent-color};
+  --card-accent: #{$dark-bg};
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: clamp(280px, 90vw, 320px);
+  min-width: 250px;
+  position: relative;
+  transform: translateY(0);
+  backdrop-filter: blur(10px);
+  
+  @media (max-width: 480px) {
+    max-width: 100%;
+    min-width: unset;
+  }
+}
+
+.card:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--card-brand);
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--card-image-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(16px, 4vw, 24px);
+  
+  @media (max-width: 480px) {
+    aspect-ratio: 4/3;
+  }
+}
+
+.imageWrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, var(--card-brand) 50%, transparent 70%);
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 0.6s ease;
+}
+
+.card:hover .imageWrapper::before {
+  opacity: 0.1;
+  transform: translateX(100%);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2;
+  border-radius: 8px;
+}
+
+.card:hover .image {
+  transform: scale(1.1) rotate(2deg);
+}
+
+.content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  background: var(--card-bg);
+  position: relative;
+}
+
+.content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--card-border), transparent);
+}
+
+.brand {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--card-brand);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.brand::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--card-brand);
+  border-radius: 50%;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--card-text);
+  margin: 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color 0.3s ease;
+  min-height: 44px;
+}
+
+.card:hover .title {
+  color: var(--card-brand);
+}
+
+.priceContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  flex-wrap: wrap;
+  padding: 12px 0;
+  border-top: 1px solid var(--card-accent);
+}
+
+.currentPrice {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--card-price);
+}
+
+.originalPrice {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--card-price-original);
+  text-decoration: line-through;
+  position: relative;
+}
+
+.originalPrice::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--card-price-original);
+  transform: translateY(-50%);
+}
+
+.regularPrice {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--card-text);
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: linear-gradient(135deg, var(--card-price), #dc2626);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 3;
+  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+}
+
+.addToCartBtn {
+  margin-top: 16px;
+  background: linear-gradient(135deg, var(--card-button-bg), var(--card-button-hover));
+  color: var(--card-button-text);
+  border: none;
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.addToCartBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.addToCartBtn:hover::before {
+  left: 100%;
+}
+
+.addToCartBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+}
+
+.addToCartBtn:active {
+  transform: translateY(0);
+}
+
+// Animación de entrada
+.card {
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .card {
+    max-width: 100%;
+    min-width: 250px;
+  }
+  
+  .content {
+    padding: 16px;
+  }
+  
+  .imageWrapper {
+    padding: 16px;
+  }
+  
+  .title {
+    font-size: 15px;
+  }
+  
+  .currentPrice, .regularPrice {
+    font-size: 18px;
+  }
+}

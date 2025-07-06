@@ -1,0 +1,172 @@
+@use 'sass:color';
+@use './theme/variables' as *;
+
+// Import de fuentes elegantes
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+
+// Variables globales para temas - Paleta sofisticada
+:root {
+  --app-bg: #{$light-bg};
+  --app-text: #{$light-text};
+  --app-surface: #{$light-surface};
+  --app-border: #{$light-border};
+  --secondary-color: #{$secondary-color};
+  --accent-color: #{$accent-color};
+  --neutral-color: #{$neutral-color};
+  --surface-color: #{$surface-color};
+  --wine-color: #{$wine-color};
+  --berry-color: #{$berry-color};
+  --wine-light: #{$wine-light};
+  --berry-light: #{$berry-light};
+}
+
+[data-theme="dark"] {
+  --app-bg: #{$dark-bg};
+  --app-text: #{$dark-text};
+  --app-surface: #{$dark-surface};
+  --app-border: #{$dark-border};
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family-secondary;
+  font-size: $font-size-base;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--app-text);
+  background-color: var(--app-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: $transition-base;
+  letter-spacing: -0.01em;
+}
+
+#root {
+  background-color: var(--app-bg);
+  min-height: 100vh;
+  transition: $transition-base;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  transition: $transition-fast;
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($secondary-color, 0.3);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-primary;
+  font-weight: $font-weight-bold;
+  line-height: 1.2;
+  margin: 0 0 $spacing-md;
+  letter-spacing: -0.02em;
+  color: var(--app-text);
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 600;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 600;
+}
+
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: $transition-base;
+  
+  &:hover {
+    color: var(--accent-color);
+    transform: translateY(-1px);
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}
+
+@media (max-width: $breakpoint-sm) {
+  html {
+    font-size: 14px;
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Utils
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
