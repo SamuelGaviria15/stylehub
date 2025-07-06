@@ -17,6 +17,42 @@ export const ProductsShowcase = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [page, setPage] = useState(1);
 
+  const handleProductSelect = (product: Product) => {
+    setSelectedProduct(product);
+    // Hacer scroll suave al inicio de la página
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  const handleBackToShowcase = () => {
+    setSelectedProduct(null);
+    // Hacer scroll suave al inicio cuando se regresa a la vitrina
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  const handlePreviousPage = () => {
+    setPage(p => Math.max(1, p - 1));
+    // Scroll suave al inicio cuando se cambia de página
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  const handleNextPage = () => {
+    setPage(p => Math.min(totalPages, p + 1));
+    // Scroll suave al inicio cuando se cambia de página
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   if (isLoading) return <div style={{textAlign: 'center'}}>Cargando productos...</div>;
   if (error) return <div style={{textAlign: 'center'}}>Error cargando productos relacionados.</div>;
   if (!originalProducts || originalProducts.length === 0) return <div style={{textAlign: 'center'}}>No hay productos para mostrar.</div>;
@@ -37,7 +73,7 @@ export const ProductsShowcase = () => {
         <div>
           <button
             className={styles.backButton}
-            onClick={() => setSelectedProduct(null)}
+            onClick={handleBackToShowcase}
           >
             <FiArrowLeft size={20} /> Volver a la colección
           </button>
@@ -50,7 +86,7 @@ export const ProductsShowcase = () => {
                 .filter((p: Product) => p.id !== selectedProduct.id)
                 .slice(0, 4)
                 .map((product: Product) => (
-                  <ProductCard key={product.id} product={product} onClick={() => setSelectedProduct(product)} />
+                  <ProductCard key={product.id} product={product} onClick={() => handleProductSelect(product)} />
                 ))}
             </div>
           </div>
@@ -59,12 +95,12 @@ export const ProductsShowcase = () => {
         <>
           <div className={styles.productsGrid}>
             {paginated.map(product => (
-              <ProductCard key={product.id} product={product} onClick={() => setSelectedProduct(product)} />
+              <ProductCard key={product.id} product={product} onClick={() => handleProductSelect(product)} />
             ))}
           </div>
           <div className={styles.pagination}>
             <button
-              onClick={() => setPage(p => Math.max(1, p - 1))}
+              onClick={handlePreviousPage}
               disabled={page === 1}
               className={styles.paginationButton}
             >
@@ -75,7 +111,7 @@ export const ProductsShowcase = () => {
               Página {page} de {totalPages} 
             </span>
             <button
-              onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+              onClick={handleNextPage}
               disabled={page === totalPages}
               className={styles.paginationButton}
             >
