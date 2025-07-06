@@ -1,5 +1,6 @@
 import type { Product } from '../../types/product';
 import { FiShoppingBag } from 'react-icons/fi';
+import { formatPriceWithDots } from '../../utils/formatters';
 import styles from './ProductCard.module.scss';
 
 interface ProductCardProps {
@@ -37,11 +38,11 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
         <div className={styles.priceContainer}>
           {hasDiscount ? (
             <>
-              <span className={styles.originalPrice}>${product.price.full}</span>
-              <span className={styles.currentPrice}>${product.price.discount}</span>
+              <span className={styles.originalPrice}>{formatPriceWithDots(product.price.full)}</span>
+              <span className={styles.currentPrice}>{formatPriceWithDots(product.price.discount)}</span>
             </>
           ) : (
-            <span className={styles.regularPrice}>${product.price.full}</span>
+            <span className={styles.regularPrice}>{formatPriceWithDots(product.price.full)}</span>
           )}
         </div>
         

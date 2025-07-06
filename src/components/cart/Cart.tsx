@@ -1,10 +1,25 @@
+import { useState } from 'react';
 import { useCartContext } from '../../hooks/useCartContext';
-import { FiShoppingBag, FiMinus, FiPlus } from 'react-icons/fi';
+import { FiShoppingBag, FiMinus, FiPlus, FiX, FiTrash2, FiCheck } from 'react-icons/fi';
+import { formatPriceWithDots } from '../../utils/formatters';
 import styles from './Cart.module.scss';
 import type { CartItem } from '../../types/product';
 
 export const Cart = () => {
   const { cart, total, removeFromCart, updateQuantity, clearCart, isCartOpen, setIsCartOpen } = useCartContext();
+  const [showSuccessNotification, setShowSuccessNotification] = useState(false);
+
+  const handleCheckout = () => {
+    // Simular proceso de compra
+    setShowSuccessNotification(true);
+    
+    // Limpiar carrito después de 2 segundos
+    setTimeout(() => {
+      clearCart();
+      setShowSuccessNotification(false);
+      setIsCartOpen(false);
+    }, 2500);
+  };
 
   if (!isCartOpen) return null;
 
@@ -13,6 +28,13 @@ export const Cart = () => {
       <div className={styles.cart} onClick={e => e.stopPropagation()}>
         <div className={styles.cartHeader}>
           <h2>Carrito de compras</h2>
+          <button 
+            className={styles.closeBtn}
+            onClick={() => setIsCartOpen(false)}
+            aria-label="Cerrar carrito"
+          >
+            <FiX size={20} />
+          </button>
         </div>
         
         {cart.length === 0 ? (
@@ -32,7 +54,7 @@ export const Cart = () => {
                       Talla: {item.selectedSize} | Color: {item.selectedColor}
                     </div>
                     <div className={styles.cartPrice}>
-                      ${item.price.discount < item.price.full ? item.price.discount : item.price.full}
+                      {formatPriceWithDots(item.price.discount < item.price.full ? item.price.discount : item.price.full)}
                     </div>
                     <div className={styles.cartActions}>
                       <div className={styles.quantityControl}>
@@ -54,8 +76,10 @@ export const Cart = () => {
                       <button 
                         className={styles.removeBtn}
                         onClick={() => removeFromCart(item.id, item.selectedSize)}
+                        aria-label="Eliminar producto"
+                        title="Eliminar producto del carrito"
                       >
-                        Eliminar
+                        <FiTrash2 size={14} />
                       </button>
                     </div>
                   </div>
@@ -66,15 +90,30 @@ export const Cart = () => {
             <div className={styles.cartFooter}>
               <div className={styles.cartTotal}>
                 <span className={styles.totalLabel}>Total</span>
-                <span className={styles.totalAmount}>${total}</span>
+                <span className={styles.totalAmount}>{formatPriceWithDots(total)}</span>
               </div>
               <button className={styles.clearBtn} onClick={clearCart}>
                 Vaciar carrito
               </button>
-              <button className={styles.checkoutBtn} disabled>
+              <button 
+                className={styles.checkoutBtn} 
+                onClick={handleCheckout}
+                disabled={cart.length === 0}
+              >
                 Finalizar compra
               </button>
             </div>
+            
+            {/* Notificación de compra exitosa */}
+            {showSuccessNotification && (
+              <div className={styles.successNotification}>
+                <div className={styles.successContent}>
+                  <FiCheck size={24} className={styles.successIcon} />
+                  <h3>¡Compra realizada con éxito!</h3>
+                  <p>Tu pedido se ha procesado correctamente</p>
+                </div>
+              </div>
+            )}
           </>
         )}
       </div>

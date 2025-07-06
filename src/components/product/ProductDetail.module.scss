@@ -176,6 +176,13 @@
 
 .colorOptions, .sizeOptions {
   flex: 1;
+  
+  h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--pd-text);
+    font-weight: 600;
+  }
 }
 
 .colors {
@@ -213,15 +220,57 @@
   min-width: 38px;
   padding: 0.4rem 0.7rem;
   border-radius: 8px;
-  border: 1px solid #ccc;
-  background: #fafafa;
+  border: 2px solid var(--pd-border);
+  background: var(--pd-bg);
+  color: var(--pd-text);
   font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: border 0.2s, background 0.2s;
+  transition: all 0.2s ease;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  
+  // Forzar colores específicos para evitar problemas en Android
+  &:not(.selected) {
+    background: #ffffff !important;
+    color: #333333 !important;
+    border-color: #cccccc !important;
+  }
 
   &.selected {
-    border: 2px solid #8b6c4c;
-    background: #fff3e0;
+    border: 2px solid #8b6c4c !important;
+    background: #fff3e0 !important;
+    color: #8b6c4c !important;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(139, 108, 76, 0.2);
+  }
+
+  &:hover:not(.selected) {
+    border-color: #8b6c4c;
+    background: #fafafa !important;
+  }
+}
+
+// Estilos específicos para tema oscuro
+[data-theme="dark"] .sizeOption {
+  &:not(.selected) {
+    background: #1a1a1a !important;
+    color: #ffffff !important;
+    border-color: #444444 !important;
+  }
+
+  &.selected {
+    background: #2d2416 !important;
+    color: #d4af8c !important;
+    border-color: #d4af8c !important;
+  }
+
+  &:hover:not(.selected) {
+    background: #2a2a2a !important;
+    border-color: #d4af8c;
   }
 }
 

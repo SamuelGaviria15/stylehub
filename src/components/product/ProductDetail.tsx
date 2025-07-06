@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import type { Product } from '../../types/product';
 import { useCartContext } from '../../hooks/useCartContext';
 import { FiShoppingBag, FiHeart, FiChevronLeft, FiChevronRight, FiCheckCircle } from 'react-icons/fi';
+import { formatPriceWithDots } from '../../utils/formatters';
 import styles from './ProductDetail.module.scss';
  
 interface ProductDetailProps {
@@ -139,11 +140,11 @@ export const ProductDetail = ({ product }: ProductDetailProps) => {
           {product.price && typeof product.price.discount === 'number' && typeof product.price.full === 'number' ? (
             product.price.discount < product.price.full ? (
               <>
-                <span className={styles.originalPrice}>${product.price.full}</span>
-                <span className={styles.discountPrice}>${product.price.discount}</span>
+                <span className={styles.originalPrice}>{formatPriceWithDots(product.price.full)}</span>
+                <span className={styles.discountPrice}>{formatPriceWithDots(product.price.discount)}</span>
               </>
             ) : (
-              <span className={styles.price}>${product.price.full}</span>
+              <span className={styles.price}>{formatPriceWithDots(product.price.full)}</span>
             )
           ) : (
             <span className={styles.price}>Precio no disponible</span>
