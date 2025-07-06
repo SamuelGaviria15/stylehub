@@ -3,7 +3,7 @@
 Una tienda virtual moderna construida con React + TypeScript + SCSS, consumiendo la API de Vélez.
 
 ## 🚀 Demo Live
-- **🌐 Sitio Web**: [Próximamente en Vercel]
+- **🌐 Sitio Web**: https://stylehub-kappa.vercel.app/
 - **📱 Preview**: Responsive design para móvil, tablet y desktop
 
 ## ✨ Características Implementadas
